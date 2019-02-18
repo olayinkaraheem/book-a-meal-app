@@ -2,11 +2,11 @@
   "name": "book-a-meal-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel --presets env -d lib/ src",
-    "start": "nodemon --exec babel-node index.js"
+    "build": "babel src -d dist",
+    "start": "nodemon --exec babel-node src/index.js"
   },
   "keywords": [],
   "author": "Kareem Olayinka",
