@@ -14,8 +14,8 @@ export default class MealsService {
         active_today: 0,
         rating: 5,
         status: 1,
-        updated_at: "20-01-2019 12:34:25",
-        updated_by: 1,
+        // updated_at: "20-01-2019 12:34:25",
+        // updated_by: 1,
         created_at: "20-01-2019 12:34:25",
       },
       {
@@ -109,7 +109,11 @@ export default class MealsService {
 
   getMeal(id) {
     // -1 because we have our data in an array which starts at 0
-    return this.fetchAllMeals()[id - 1];
+    return this.fetchAllMeals()[id - 1] || {};
+  }
+
+  addMeal(meal) {
+    return [ ...this.fetchAllMeals(), meal];
   }
 
   getAllByCaterer(caterer_id) {
@@ -121,8 +125,14 @@ export default class MealsService {
   updateMeal(caterer_id, meal_id, update) {
     const meals = this.getAllByCaterer(caterer_id);
     const thisMeal = meals.filter( meal => meal.id == meal_id);
-    meals.splice(meals.indexOf(thisMeal), 1, update);
+    const updated_meal = { id: meal_id, ...update, caterer_id, updated_by: caterer_id };
+    console.log(updated_meal);
+    meals.splice(meals.indexOf(thisMeal), 1, updated_meal);
     return meals;
+  }
+  deleteMeal(caterer_id, meal_id) {
+    const meals = this.getAllByCaterer(caterer_id);
+    return meals.filter( meal => meal.id != meal_id )
   }
 
 }
