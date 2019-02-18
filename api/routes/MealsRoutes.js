@@ -9,8 +9,10 @@ const menuController = new MenuController();
 
 const router = express.Router();
 router.get('/', mealsController.getAll());
+router.post('/', mealsController.addMeal());
+router.put('/:id', mealsController.updateMeal());
+router.delete('/:id', mealsController.deleteMeal());
 router.get('/:id', mealsController.getMeal());
-router.get('/', menuController.getMealsOfTheDay());
 
 // router.get('/:id', MealsController.getMeal);
 

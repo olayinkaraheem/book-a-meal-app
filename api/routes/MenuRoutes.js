@@ -5,6 +5,7 @@ const menuController = new MenuController();
 
 const router = express.Router();
 
-router.get('/', menuController.getMealsOfTheDay());
+router.get('/', menuController.getMenuOfTheDay());
+router.post('/', menuController.setMenuOfTheDay());
 
 export default router;
