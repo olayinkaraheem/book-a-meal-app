@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Book-A-Meal - index</title>
+    <title>Book-A-Meal - dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="styles/bootstrap.css" /> -->
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
@@ -11,6 +12,7 @@
         crossorigin="anonymous">
     <script src="main.js"></script>
 </head>
+
 <body>
     <div class="container">
 
@@ -46,12 +48,23 @@
                 <div id="email"><a href="mailto:info@bookmeal.com">info@bookameal.com</a></div>
             </div>
         </div>
+        <div class="dashboard-menu-icon">menu-icon</div>
+        <div class="dashboard-menu">
+            <span class="close-btn">&times;</span>
+            <ul id="dashboard-menu-item-container">
+                <li class="dashboard-menu-item"><a href="#">logout</a></li>
+                <li class="dashboard-menu-item"><a href="profile.html">profile</a></li>
+                <li class="dashboard-menu-item"><a href="requests.html">request history</a></li>
+                <li class="dashboard-menu-item"><a href="new-order.html">new</a></li>
+                <!-- <li class="dashboard-menu-item"><a href="setting.html">settings</a></li> -->
+            </ul>
+        </div>
         <div class="row">
             <div class="col-9">
                 <div class="row">
                     <div class="col-12">
                         <h3 class="section-header center">
-                            menu of the day version 1
+                            menu of the day
                         </h3>
                     </div>
                 </div>
@@ -60,7 +73,8 @@
                         <img src="images/capsicum-tomato-suace.jpg" class="menu-item-image" alt="image-name-1" />
                         <div class="meal-detail">
                             <h3 class="menu-item-header">Capsicum tomato sauce</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium similique, voluptatibus quos voluptatem repellendus nostrum.</p>
+                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
+                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
                             <p class="caterer">- sibi koya</p>
                             <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
                         </div>
@@ -69,7 +83,8 @@
                         <img src="images/goat-meat-pepper-soup.jpg" class="menu-item-image" alt="image-name-1" />
                         <div class="meal-detail">
                             <h3 class="menu-item-header">Goat meat pepper soup</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium similique, voluptatibus quos voluptatem repellendus nostrum.</p>
+                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
+                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
                             <p class="caterer">- Amanda Hills</p>
                             <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
                         </div>
@@ -78,7 +93,8 @@
                         <img src="images/egusi-soup-with-melon.jpg" class="menu-item-image" alt="image-name-1" />
                         <div class="meal-detail">
                             <h3 class="menu-item-header">Egusi soup with melon</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium similique, voluptatibus quos voluptatem repellendus nostrum.</p>
+                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
+                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
                             <p class="caterer">- Tara Khairah</p>
                             <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
                         </div>
@@ -87,7 +103,8 @@
                         <img src="images/egusi-soup-with-melon.jpg" class="menu-item-image" alt="image-name-1" />
                         <div class="meal-detail">
                             <h3 class="menu-item-header">Egusi soup with melon</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium similique, voluptatibus quos voluptatem repellendus nostrum.</p>
+                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
+                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
                             <p class="caterer">- Tara Khairah</p>
                             <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
                         </div>
@@ -96,7 +113,8 @@
                         <img src="images/goat-meat-pepper-soup.jpg" class="menu-item-image" alt="image-name-1" />
                         <div class="meal-detail">
                             <h3 class="menu-item-header">Goat meat pepper soup</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium similique, voluptatibus quos voluptatem repellendus nostrum.</p>
+                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
+                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
                             <p class="caterer">- Amanda Hills</p>
                             <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
                         </div>
@@ -105,19 +123,21 @@
                         <img src="images/capsicum-tomato-suace.jpg" class="menu-item-image" alt="image-name-1" />
                         <div class="meal-detail">
                             <h3 class="menu-item-header">Capsicum tomato sauce</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium similique, voluptatibus quos voluptatem repellendus nostrum.</p>
+                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
+                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
                             <p class="caterer">- sibi koya</p>
                             <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
                         </div>
                     </div>
                 </div>
-                
+            
             </div>
             <div class="col-3 sidebar">
                 <div id="search">
-                    <input type="search" placeholder="search" title="search" class="form-control">
+                    <input type="search" class="form-control" placeholder="search" title="search">
                 </div>
                 <div id="hottest">
+                    <div class="section-title">Hot!</div>
                     <ul id="hot-list-item-container">
                         <li class="hot-list-item"><a href="">hot item 1</a></li>
                         <li class="hot-list-item"><a href="">hot item 2</a></li>
@@ -139,9 +159,9 @@
         </div>
         <div class="row center">
             <div class="col-12 social-contacts">
-                <a class="social-icon"><i class="fa fa-facebook"></i></a>
-                <a class="social-icon"><i class="fa fa-twitter"></i></a>
-                <a class="social-icon"><i class="fa fa-instagram"></i></a>
+                <span class="social-icon">facebook</span>
+                <span class="social-icon">twitter</span>
+                <span class="social-icon">instagram</span>
             </div>
         </div>
         <div class="row center footer">
@@ -151,4 +171,5 @@
         </div>
     </div>
 </body>
+
 </html>
