@@ -2,11 +2,11 @@
 
 var _express = _interopRequireDefault(require("express"));
 
-var _MealsRoutes = _interopRequireDefault(require("./src/routes/MealsRoutes"));
+var _MealsRoutes = _interopRequireDefault(require("./routes/MealsRoutes"));
 
-var _MenuRoutes = _interopRequireDefault(require("./src/routes/MenuRoutes"));
+var _MenuRoutes = _interopRequireDefault(require("./routes/MenuRoutes"));
 
-var _OrdersRoutes = _interopRequireDefault(require("./src/routes/OrdersRoutes"));
+var _OrdersRoutes = _interopRequireDefault(require("./routes/OrdersRoutes"));
 
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 
