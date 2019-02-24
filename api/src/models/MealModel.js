@@ -1,3 +1,5 @@
+import connection from '../config/db.config';
+
 export default class Meal {
   constructor() {
     this.id = null;
