@@ -15,7 +15,11 @@ export default class OrdersController {
     const order = new OrdersService();
     return (req, res) => {
       const selectedMeal = order.getAllMealOptions().filter( meal => req.body.id == meal.id);
-      res.status(200).send(selectedMeal);
+      // console.log(selectedMeal);
+      const new_order = order.placeOrder(selectedMeal[0], req.body);
+      // console.log(new_order);
+      const response = {message: 'Request submitted successfully', data: new_order };
+      res.status(200).send(response);
     }
   }
 
@@ -36,14 +40,30 @@ export default class OrdersController {
         status,
         created_at: new Date()
       };
-      res.status(200).send(order.updateOrderItem(user_id, parseInt(req.params.id, Number), update));
+      const updated_order = order.updateOrderItem(user_id, parseInt(req.params.id, Number), update);
+      
+      let response_status = 404;
+      let message = `Order with id ${req.params.id} does not exist`;
+      if(updated_order.id){
+        response_status = 200;
+        message = 'Order updated successfully';
+      }
+      res.status(response_status).send({message, data: updated_order});
     }
   }
 
-  deleteMeal() {
-    const meal = new OrdersService();
+  deleteOrder() {
+    const order = new OrdersService();
     return (req, res) => {
-      res.status(200).send(meal.deleteMeal(req.body.caterer_id, req.params.id));
+      const deleted_order = order.deleteOrderItem(req.body.user_id, req.params.id)
+      let response_status = 404;
+      let message = `Order with id ${req.params.id} does not exist`;
+      // console.log(deleted_order);
+      if (deleted_order.id) {
+        response_status = 200;
+        message = 'Order deleted successfully';
+      }
+      res.status(response_status).send({ message, data: deleted_order });
     }
   }
 }

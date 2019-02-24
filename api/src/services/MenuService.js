@@ -14,7 +14,7 @@ export default class MealsService {
         active_today: 0,
         rating: 5,
         status: 1,
-        updated_at: "20-01-2019 12:34:25",
+        // updated_at: "20-01-2019 12:34:25",
         // updated_by: 1,
         created_at: "20-01-2019 12:34:25",
       },
@@ -28,7 +28,7 @@ export default class MealsService {
         active_today: 1,
         rating: 5,
         status: 1,
-        updated_at: "20-01-2019 12:34:25",
+        // updated_at: "20-01-2019 12:34:25",
         // updated_by: 1,
         created_at: "20-01-2019 12:34:25",
       },
@@ -42,7 +42,7 @@ export default class MealsService {
         active_today: 1,
         rating: 5,
         status: 1,
-        updated_at: "20-01-2019 12:34:25",
+        // updated_at: "20-01-2019 12:34:25",
         // updated_by: 1,
         created_at: "20-01-2019 12:34:25",
       },
@@ -56,7 +56,7 @@ export default class MealsService {
         active_today: 0,
         rating: 5,
         status: 1,
-        updated_at: "20-01-2019 12:34:25",
+        // updated_at: "20-01-2019 12:34:25",
         // updated_by: 1,
         created_at: "20-01-2019 12:34:25",
       },
@@ -70,7 +70,7 @@ export default class MealsService {
         active_today: 1,
         rating: 5,
         status: 1,
-        updated_at: "20-01-2019 12:34:25",
+        // updated_at: "20-01-2019 12:34:25",
         // updated_by: 1,
         created_at: "20-01-2019 12:34:25",
       },
@@ -103,8 +103,8 @@ export default class MealsService {
     return this.fetchAllMeals() || [];
   }
 
-  getMealsOfTheDay() {
-    return this.fetchAllMeals().filter( meal => meal.active_today == 1 ) || [];
+  getMenuOfTheDay() {
+    return this.fetchAllMeals().filter(meal => meal.active_today == 1);
   }
 
   getMeal(id) {
@@ -112,78 +112,51 @@ export default class MealsService {
     return this.fetchAllMeals()[id - 1] || {};
   }
 
-  addMeal(meal) {
-    // this should return the meal just added if saved successfully 
-    // or an error as string then i'll check if response type is an object
+  addMealToMenu(caterer_id, meal_id) {
+    // this should return the meal just added if saved successfully or an error as string then i'll check if response type is an object
     // or a string the controller;
-    const { name, size, price, currency, caterer_id, active_today, active } = meal;
-    const lastMealInDatabase = this.getAll()[this.getAll().length - 1];
-    const newMeal = {
-      id: lastMealInDatabase.id + 1,
-      name,
-      size,
-      price,
-      currency,
-      caterer_id,
-      active_today,
-      active,
-      rating: 0,
-      updated_at: 0,
-      updated_by: 0,
-      created_at: new Date(),
-    };
-    this.meals = [ ...this.meals, newMeal];
-    return newMeal || {};
+    const meals = this.getAllByCaterer(caterer_id);
+    if(meals){
+      const thisMealIndex = meals.map(meal => meal.id).indexOf(parseInt(meal_id, Number));
+      const thisMeal = meals[thisMealIndex];
+      if (thisMealIndex >= 0) {
+        thisMeal.active_today = 1;
+        thisMeal.updated_at = new Date();
+        const new_menu_item = thisMeal;
+        meals.splice(thisMealIndex, 1, new_menu_item);
+        return new_menu_item;
+      }
+    }
+    return {};
   }
+  removeMealFromMenu(caterer_id, meal_id) {
+    // this should return the meal just added if saved successfully or an error as string then i'll check if response type is an object
+    // or a string the controller;
+    const meals = this.getAllByCaterer(caterer_id);
+    if(meals){
+      const thisMealIndex = meals.map(meal => meal.id).indexOf(parseInt(meal_id, Number));
+      const thisMeal = meals[thisMealIndex];
+      if (thisMealIndex >= 0) {
+        thisMeal.active_today = 0;
+        thisMeal.updated_at = new Date();
+        const removed_menu_item = thisMeal;
+        meals.splice(thisMealIndex, 1, removed_menu_item);
+        return removed_menu_item;
+      }
+    }
+    return {};
+  }
+
 
   getAllByCaterer(caterer_id) {
     // This will be a call to our ORM
     // And some manipulations to make the data presentable.
-    return this.fetchAllMeals().filter( meal => meal.caterer_id == caterer_id );
+    return this.fetchAllMeals().filter(meal => meal.caterer_id == caterer_id);
   }
 
-  updateMeal(meal_id, update) {
-    const { name, size, price, currency, caterer_id, active_today, active, rating } = update;
-    const meals = this.getAllByCaterer(caterer_id);
-    const thisMealIndex = meals.map(meal => meal.id).indexOf(meal_id);
-    // const thisMeal = meals[thisMealIndex];
-
-    if(meals){
-      if(thisMealIndex >= 0 ){
-        const meal_update = {
-          name,
-          size,
-          price,
-          currency,
-          caterer_id,
-          active_today,
-          active,
-          rating,
-          updated_at: new Date(),
-          updated_by: caterer_id
-        };
-        const updated_meal = { id: meal_id, ...meal_update };
-        meals.splice(thisMealIndex, 1, updated_meal);
-        return updated_meal;
-      }
-    }
-    return {};
-  }
-  deleteMeal(caterer_id, meal_id) {
-    const meals = this.getAllByCaterer(caterer_id);
-    // return meals.filter( meal => meal.id != meal_id );
-    if (meals) {
-      const thisMealIndex = meals.map(meal => meal.id).indexOf(parseInt(meal_id, Number));
-      const thisMeal = meals[thisMealIndex];
-      if (thisMealIndex >= 0) {
-        thisMeal.status = 0;
-        thisMeal.updated_at = new Date();
-        const deleted_meal = thisMeal;
-        meals.splice(thisMealIndex, 1, deleted_meal);
-        return deleted_meal;
-      }
-    }
-    return {};
-  }
+  // removeMealFromMenu(caterer_id, meal_id) {
+  //   const meals = this.getAllByCaterer(caterer_id);
+  //   return meals.filter(meal => meal.id != meal_id)
+  // }
 
 }

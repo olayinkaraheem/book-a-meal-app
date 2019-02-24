@@ -1,7 +1,8 @@
 export default class Order {
   constructor() {
     this.id = null;
-    this.meal_title = null;
+    this.meal_id = null;
+    this.meal_name = null;
     this.user_id = null;
     this.meal_size = null;
     this.quantity = null;
