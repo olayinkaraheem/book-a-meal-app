@@ -23,6 +23,6 @@ app.use('/api/v1/meals', MealsRoutes);
 app.use('/api/v1/menu', MenuRoutes);
 app.use('/api/v1/orders', OrdersRoutes);
 const PORT = 8080;
-const server = app.listen(PORT, ()=>{
+const server = app.listen(process.env.PORT || PORT, ()=>{
   console.log(`server started on port ${PORT}`)
 });
