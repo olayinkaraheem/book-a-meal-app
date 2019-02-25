@@ -5,6 +5,8 @@ to caterers that provide them with they love to eat.
 
 [![Build Status](https://travis-ci.org/olayinkaraheem/book-a-meal-app.svg?branch=feature%2FtravisCI)](https://travis-ci.org/olayinkaraheem/book-a-meal-app)
 
+[![Coverage Status](https://coveralls.io/repos/github/olayinkaraheem/book-a-meal-app/badge.svg)](https://coveralls.io/github/olayinkaraheem/book-a-meal-app)
+
 
 **UI template:** (https://olayinkaraheem.github.io/book-a-meal-app/)
 
