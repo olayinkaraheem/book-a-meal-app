@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Book-A-Meal - Select Meal</title>
+    <title>Book-A-Meal - Checkout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="styles/bootstrap.css" /> -->
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
@@ -55,8 +55,7 @@
                 <li class="dashboard-menu-item"><a href="#">logout</a></li>
                 <li class="dashboard-menu-item"><a href="profile.html">profile</a></li>
                 <li class="dashboard-menu-item"><a href="requests.html">request history</a></li>
-                <li class="dashboard-menu-item"><a href="checkout.html">checkout</a></li>
-                <li class="dashboard-menu-item"><a href="#">new</a></li>
+                <li class="dashboard-menu-item"><a href="dashboard.html">new</a></li>
                 <!-- <li class="dashboard-menu-item"><a href="setting.html">settings</a></li> -->
             </ul>
         </div>
@@ -65,71 +64,82 @@
                 <div class="row">
                     <div class="col-12">
                         <h3 class="section-header center">
-                            menu of the day
+                            CheckOut
                         </h3>
                     </div>
                 </div>
-                <div class="row menu-of-the-day">
-                    <div class="menu-item col-3">
-                        <img src="images/capsicum-tomato-suace.jpg" class="menu-item-image" alt="image-name-1" />
-                        <div class="meal-detail">
-                            <h3 class="menu-item-header">Capsicum tomato sauce</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
-                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
-                            <p class="caterer">- sibi koya</p>
-                            <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
+                <div class="row form">
+                    <form action="confirmation.html" method="post">
+                    
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>Billing Address</h3>
+                                <label for="fname">
+                                    <i class="fa fa-user"></i> Full Name
+                                    <input type="text" id="fname" class="form-control" name="firstname" placeholder="John M. Doe">
+                                </label>
+                                <label for="email">
+                                    <i class="fa fa-envelope"></i> Email
+                                    <input type="text" id="email" class="form-control" name="email" placeholder="john@example.com">
+                                </label>
+                                <label for="adr">
+                                    <i class="fa fa-address-card-o"></i> Address
+                                    <input type="text" id="adr" class="form-control" name="address" placeholder="542 W. 15th Street">
+                                </label>
+                                <label for="city">
+                                    <i class="fa fa-institution"></i> City
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="New York">
+                                </label>
+                            </div>        
+                             
+                            <div class="col-6">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" id="state" name="state" placeholder="NY">
+                            </div>
+                            <div class="col-6">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="10001">
+                            </div>
+                            
+                    
+                            <div class="col-12">
+                                <h3>Payment</h3>
+                                <label for="fname">Accepted Cards</label>
+                                <div class="icon-container">
+                                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                                </div>
+                                <label for="cname">Name on Card
+                                    <input type="text"  class="form-control" id="cname" name="cardname" placeholder="John More Doe">
+                                </label>
+                                <label for="ccnum">Credit card number</label>
+                                <input type="text"  class="form-control" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                <label for="expmonth">Exp Month</label>
+                                <input type="text"  class="form-control" id="expmonth" name="expmonth" placeholder="September">
+                    
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="expyear">Exp Year</label>
+                                        <input type="text" class="form-control" id="expyear" name="expyear" placeholder="2018">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="352">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label>
+                                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                            </label>
+                    
                         </div>
-                    </div>
-                    <div class="menu-item col-3">
-                        <img src="images/goat-meat-pepper-soup.jpg" class="menu-item-image" alt="image-name-1" />
-                        <div class="meal-detail">
-                            <h3 class="menu-item-header">Goat meat pepper soup</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
-                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
-                            <p class="caterer">- Amanda Hills</p>
-                            <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
-                        </div>
-                    </div>
-                    <div class="menu-item col-3">
-                        <img src="images/egusi-soup-with-melon.jpg" class="menu-item-image" alt="image-name-1" />
-                        <div class="meal-detail">
-                            <h3 class="menu-item-header">Egusi soup with melon</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
-                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
-                            <p class="caterer">- Tara Khairah</p>
-                            <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
-                        </div>
-                    </div>
-                    <div class="menu-item col-3">
-                        <img src="images/egusi-soup-with-melon.jpg" class="menu-item-image" alt="image-name-1" />
-                        <div class="meal-detail">
-                            <h3 class="menu-item-header">Egusi soup with melon</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
-                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
-                            <p class="caterer">- Tara Khairah</p>
-                            <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
-                        </div>
-                    </div>
-                    <div class="menu-item col-3">
-                        <img src="images/goat-meat-pepper-soup.jpg" class="menu-item-image" alt="image-name-1" />
-                        <div class="meal-detail">
-                            <h3 class="menu-item-header">Goat meat pepper soup</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
-                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
-                            <p class="caterer">- Amanda Hills</p>
-                            <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
-                        </div>
-                    </div>
-                    <div class="menu-item col-3">
-                        <img src="images/capsicum-tomato-suace.jpg" class="menu-item-image" alt="image-name-1" />
-                        <div class="meal-detail">
-                            <h3 class="menu-item-header">Capsicum tomato sauce</h3>
-                            <p class="menu-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum accusantium
-                                similique, voluptatibus quos voluptatem repellendus nostrum.</p>
-                            <p class="caterer">- sibi koya</p>
-                            <button class="btn order"><i class="fa fa-cart-plus"></i> order</button> <span class="price">N1000</span>
-                        </div>
-                    </div>
+
+                        <button id="checkout" class="btn">Continue to Confirmation</button>
+                       
+                    </form>
                 </div>
             
             </div>
