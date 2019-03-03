@@ -20,7 +20,7 @@ module.exports = {
       currency: {
         type: Sequelize.STRING
       },
-      catererId: {
+      caterer_id: {
         type: Sequelize.INTEGER
       },
       // activeToday: {
@@ -29,15 +29,15 @@ module.exports = {
       active: {
         type: Sequelize.INTEGER
       },
-      updatedBy: {
+      updated_by: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
