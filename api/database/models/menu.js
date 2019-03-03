@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Menu = sequelize.define('Menu', {
-    mealId: DataTypes.INTEGER,
+    meal_id: DataTypes.INTEGER,
     deleted: DataTypes.INTEGER
   }, {});
   Menu.associate = function(models) {

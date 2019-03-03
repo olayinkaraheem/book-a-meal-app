@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.STRING,
     image: DataTypes.STRING,
     currency: DataTypes.STRING,
-    catererId: DataTypes.INTEGER,
+    caterer_id: DataTypes.INTEGER,
     // activeToday: DataTypes.INTEGER,
     active: DataTypes.INTEGER,
-    updatedBy: DataTypes.INTEGER
+    updated_by: DataTypes.INTEGER
   }, {});
   Meal.associate = function(models) {
     // associations can be defined here

@@ -8,19 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      mealId: {
+      meal_id: {
         type: Sequelize.INTEGER
       },
       deleted: {
         type: Sequelize.INTEGER,
         defaultValue: 0
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATEONLY,
         defaultValue: Sequelize.NOW
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

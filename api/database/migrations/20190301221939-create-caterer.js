@@ -8,26 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         unique: true
       },
-      restaurantName: {
+      restaurant_name: {
         type: Sequelize.STRING,
         unique: true
       },
-      imageUrl: {
+      image_url: {
         type: Sequelize.STRING
       },
       rating: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
