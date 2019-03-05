@@ -1,4 +1,4 @@
-import Meal from '../models/MealModel';
+import database from '../../database/models';
 
 export default class MealsService {
   fetchAllMeals() {
@@ -97,10 +97,15 @@ export default class MealsService {
     });
   }
 
-  getAll() {
-    // This will be a call to our ORM
-    // And some manipulations to make the data presentable.
-    return this.fetchAllMeals() || [];
+  async getAll(caterer_id=1) {
+    try {
+      const meals = caterer_id == 1 ? await database.Meal.findAll() : await database.Meal.findAll({ where: { caterer_id }});
+      // console.log(meals);
+      return meals;
+    } catch ( err ) {
+      const error = { error: err};
+      console.log(error);
+    }
   }
 
   getMealsOfTheDay() {

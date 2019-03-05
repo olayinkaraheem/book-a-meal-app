@@ -6,7 +6,7 @@ export default class OrdersService {
   constructor() {
     // test comment to check what is wrong with merge after assignment submission
     const meals = new Meal();
-    this.meals = meals.getAll();
+    // this.meals = meals.getAll();
   }
 
   fetchAllOrders() {

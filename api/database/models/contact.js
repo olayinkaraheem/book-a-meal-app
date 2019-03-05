@@ -1,17 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Contact = sequelize.define('Contact', {
-    user_id: Sequelize.INTEGER,
-    phone: Sequelize.STRING,
-    email: Sequelize.STRIN,
-    address: Sequelize.STRING,
-    city: Sequelize.STRING,
-    state: Sequelize.STRING,
-    country: Sequelize.STRING
+    user_id: DataTypes.INTEGER,
+    phone: DataTypes.STRING,
+    email: DataTypes.STRING,
+    address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    country: DataTypes.STRING
   }, {});
   Contact.associate = function(models) {
     // associations can be defined here
-    Contact.belongsTo(User);
+    Contact.belongsTo(models.User);
   };
   return Contact;
 };

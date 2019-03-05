@@ -1,4 +1,5 @@
 import connection from '../config/db.config';
+import mealdb from '../../database/models/meal';
 
 export default class Meal {
   constructor() {
@@ -15,4 +16,16 @@ export default class Meal {
     this.updated_by = null;
     this.created_at = null;
   }
+
+  createMeal() {
+
+  } 
+
+  // async getMeals() {
+  //   const meals = await mealdb.findAll().then( (meals) => {
+  //     console.log(meals);
+  //   }).catch( ( err ) => {
+  //     console.log(err);
+  //   })
+  // }
 }

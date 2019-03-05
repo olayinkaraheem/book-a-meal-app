@@ -23,9 +23,9 @@ module.exports = {
       caterer_id: {
         type: Sequelize.INTEGER
       },
-      // activeToday: {
-      //   type: Sequelize.INTEGER
-      // },
+      image: {
+        type: Sequelize.STRING
+      },
       active: {
         type: Sequelize.INTEGER
       },
@@ -33,14 +33,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       created_at: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
       },
       updated_at: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      // {
+      //   timestamps: true
+      // }
     });
   },
   down: (queryInterface, Sequelize) => {

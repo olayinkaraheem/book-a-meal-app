@@ -8,9 +8,17 @@ export default class MealsController {
   getAll() {
     const meal = new MealsService();
     return (req, res) => {
-      const all_meals = meal.getAll();
+      let all_meals = null;
+      meal.getAll()
+      .then( (meals) => {
+        all_meals = meals
+      })
+      .catch( (err) => {
+        console.log( err )
+      })
+      console.log(all_meals);
       let message = 'No meal option available';
-      let status = 201;
+      let status = 204;
       if(all_meals.length){
         message = 'Meals fetched successfully';
         status = 200;
