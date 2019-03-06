@@ -43,18 +43,18 @@ describe('Menu', () => {
   
   describe('/DELETE Menu', () => {
     it('It should delete a meal from menu', done => {
-      const menu_item = {
-        caterer_id: 3
-      };
+      // const menu_item = {
+      //   caterer_id: 3
+      // };
       chai.request(app)
         .delete('/api/v1/menu/1')
-        .send(menu_item)
+        // .send(menu_item)
         .end((err, res) => {
-          expect(menu_item).to.have.property('caterer_id');
+          // expect(menu_item).to.have.property('caterer_id');
           // console.log(res.body);
           res.should.have.status(200);
           expect(res.body).to.be.an('object');
-          expect(res.body.data).to.have.property('id');
+          expect(res.body.data).to.have.property('message');
           done();
         });
     });

@@ -181,6 +181,7 @@ export default class MealsService {
   async deleteMeal(id, meal) {
     try {
       const deleted_meal = await Meal.update( meal, { where: { id }, returning: true });
+      console.log(deleted_meal);
       if(deleted_meal[1].length){
         return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${id} deleted successfully` }
       }

@@ -183,11 +183,11 @@ export default class MenuService {
   async removeMealFromMenu(meal_id) {
     // this should return the meal just added if saved successfully or an error as string then i'll check if response type is an object
     // or a string the controller;
-    console.log(meal_id);
+    // console.log(meal_id);
     try {
-      const deleted_meal = await Menu.update(meal_id, { where: { meal_id }, returning: true });
+      const deleted_meal = await Menu.update({ deleted: 1}, { where: { meal_id }, returning: true });
       if (deleted_meal[1].length) {
-        return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${id} removed from menu successfully` }
+        return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${meal_id} removed from menu successfully` }
       }
       return { error: false, code: 204, message: 'Meal could not be deleted from menu', meal }
     } catch (err) {

@@ -81,7 +81,7 @@ describe('Meals', () => {
         caterer_id: 3
       };
       chai.request(app)
-        .delete('/api/v1/meals/4')
+        .delete('/api/v1/meals/1')
         .send(meal_item)
         .end((err, res) => {
           expect(meal_item).to.have.property('caterer_id');
