@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
     amount: DataTypes.DECIMAL(10, 2),
     status: DataTypes.INTEGER,
-  }, {});
+  }, {
+    underscored: true
+  });
   Order.associate = function(models) {
     // associations can be defined here
   };

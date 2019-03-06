@@ -15,8 +15,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     // activeToday: DataTypes.INTEGER,
-    active: DataTypes.INTEGER,
-    updated_by: DataTypes.INTEGER
+    active: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
+
+    updated_by: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0 
+    }
   }, {
     underscored: true
   });
@@ -26,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'caterer_id',
       as: 'caterer'
     });
+    
+    // Meal.hasMany(models.Menu, {
+    //   foreignKey: 'id',
+    //   as: 'menu'
+    // });
   };
   return Meal;
 };
