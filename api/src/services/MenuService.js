@@ -1,5 +1,4 @@
 import { Menu } from '../../database/models';
-import Sequelize from 'Sequelize';
 
 export default class MenuService {
   fetchAllMeals() {
@@ -120,7 +119,6 @@ export default class MenuService {
   async getMenuOfTheDay() {
     // return this.fetchAllMeals().filter(meal => meal.active_today == 1);
     try {
-      const Op = Sequelize.Op;
       const date = new Date();
       const month = `${date.getMonth() + 1}`;
       const day = date.getDate().toString().length < 2 ? "0"+date.getDate() : date.getDate();
@@ -142,7 +140,7 @@ export default class MenuService {
         //   }
         // }
       
-      console.log(meals);
+      // console.log(meals);
       if(meals) {
         return { error: false, code: 200, message: `Today's menu is empty meals`, meals };
       }
