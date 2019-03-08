@@ -10,7 +10,7 @@ export default class UserService {
         // console.log(meals);
         return { error: false, code: 200, message: 'Users fetched successfully', users };
       }
-      return { error: false, code: 200, message: "No users found", users: {}};
+      return { error: false, code: 204, message: "No meals found", users: {}};
     } catch ( err ) {
       // console.log(err);
       return { error: true, code: 500, message: 'Something went wrong. Please try again.' };
@@ -24,7 +24,7 @@ export default class UserService {
       if(user) {
         return { error: false, code: 200, message: 'Request successfull', user };
       }
-      return { error: false, code: 200, message: `No user found with id: ${id}`, user: {} };
+      return { error: false, code: 204, message: `No user found with id: ${id}`, user: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: 'Something went wrong. Please try again' };
     }
@@ -41,7 +41,7 @@ export default class UserService {
         // ...meal
         // }, returning: id)
         // .then;
-      if(role == 2) {
+      if(role == 2)
         const { firstname, lastname, username, password, email, role, ...others } = user;
         newUser = await db.sequelize.transaction( async (t) => { 
           return await User.create({ 
@@ -62,12 +62,11 @@ export default class UserService {
           .catch( (err) => {
             throw new Error(err);
           })
-        });
-      }
+      })
       if(newUser){
-        return { error: false, code: 200, message: `New user with id ${newUser.id} added successfully`, user: newUser };
+        return { error: false, code: 200, message: `New user with id ${newUser.id} added successfully`, meal: newMeal };
       }
-      return { error: false, code: 403, message: 'User could not be created. Please try again', user: {} };
+      return { error: false, code: 403, message: 'User could not be created. Please try again', meal: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: "Something is not right" };
     }
@@ -95,7 +94,7 @@ export default class UserService {
       if(updated_meal){
         return { error: false, meal: updated_meal, code: 200, message: `Meal with id ${id} updated successfully` }
       }
-      return { error: false, code: 200, message: 'Update failed', meal  }
+      return { error: false, code: 204, message: 'Update failed', meal  }
     } catch ( err ) {
       return { error: true, code: 500 , message: 'Something went wrong. Please try again.'}
     }
@@ -108,7 +107,7 @@ export default class UserService {
       if(deleted_meal[1].length){
         return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${id} deleted successfully` }
       }
-      return { error: false, code: 200, message: 'Meal could not be deleted', meal  }
+      return { error: false, code: 204, message: 'Meal could not be deleted', meal  }
     } catch ( err ) {
       return { error: true, code: 500 , message: 'Something went wrong. Please try again.'}
     }

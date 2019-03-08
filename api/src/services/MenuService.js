@@ -109,7 +109,7 @@ export default class MenuService {
         return { error: false, code: 200, message: 'Request successful', menu };
       }
 
-      return { error: false, code: 204, message: "No meals found", menu: {} };
+      return { error: false, code: 200, message: "No meals found", menu: {} };
     } catch (err) {
       console.log(err);
       return { error: true, code: 500, message: 'Something went wrong. Please try again' };
@@ -142,9 +142,9 @@ export default class MenuService {
       
       // console.log(meals);
       if(meals) {
-        return { error: false, code: 200, message: `Today's menu is empty.`, meals };
+        return { error: false, code: 200, message: `Today's menu fetched successfully`, meals };
       }
-      return { error: false, code: 204, message: `No meal found for today's menu`, meals: {} };
+      return { error: false, code: 200, message: `No meal found for today's menu`, meals: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: 'Something went wrong. Please try again'};
     }
@@ -158,7 +158,7 @@ export default class MenuService {
       if (meal) {
         return { error: false, code: 200, message: 'Request successfull', meal };
       }
-      return { error: false, code: 204, message: `No meal found with id: ${id}`, meal: {} };
+      return { error: false, code: 200, message: `No meal found with id: ${id}`, meal: {} };
     } catch (err) {
       return { error: true, code: 500, message: 'Something went wrong. Please try again' };
     }
@@ -187,7 +187,7 @@ export default class MenuService {
       if (deleted_meal[1].length) {
         return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${meal_id} removed from menu successfully` }
       }
-      return { error: false, code: 204, message: 'Meal could not be deleted from menu', meal }
+      return { error: false, code: 200, message: 'Meal could not be deleted from menu', meal }
     } catch (err) {
       return { error: true, code: 500, message: 'Something went wrong. Please try again.' }
     }

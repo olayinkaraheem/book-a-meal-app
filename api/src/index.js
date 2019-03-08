@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import express from 'express';
 import MealsRoutes from './routes/MealsRoutes';
 import MenuRoutes from './routes/MenuRoutes';
@@ -23,7 +24,8 @@ app.use(bodyParser.json());
 app.use('/api/v1/meals', MealsRoutes);
 app.use('/api/v1/menu', MenuRoutes);
 app.use('/api/v1/orders', OrdersRoutes);
-app.use('/api/v1/users', UserRoutes);
+// app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1/auth', UserRoutes);
 const PORT = 8080;
 const server = app.listen(process.env.PORT || PORT, ()=>{
   console.log(`server started on port ${PORT}`)

@@ -108,7 +108,7 @@ export default class MealsService {
         // console.log(meals);
         return { error: false, code: 200, message: 'Meals fetched successfully', meals };
       }
-      return { error: false, code: 204, message: "No meals found", meals: {}};
+      return { error: false, code: 200, message: "No meals found", meals: {}};
     } catch ( err ) {
       // console.log(err);
       return { error: true, code: 500, message: 'Something went wrong. Please try again.' };
@@ -124,7 +124,7 @@ export default class MealsService {
       if(meal) {
         return { error: false, code: 200, message: 'Request successfull', meal };
       }
-      return { error: false, code: 204, message: `No meal found with id: ${id}`, meal: {} };
+      return { error: false, code: 200, message: `No meal found with id: ${id}`, meal: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: 'Something went wrong. Please try again' };
     }
@@ -172,7 +172,7 @@ export default class MealsService {
       if(updated_meal){
         return { error: false, meal: updated_meal, code: 200, message: `Meal with id ${id} updated successfully` }
       }
-      return { error: false, code: 204, message: 'Update failed', meal  }
+      return { error: false, code: 200, message: 'Update failed', meal  }
     } catch ( err ) {
       return { error: true, code: 500 , message: 'Something went wrong. Please try again.'}
     }
@@ -185,7 +185,7 @@ export default class MealsService {
       if(deleted_meal[1].length){
         return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${id} deleted successfully` }
       }
-      return { error: false, code: 204, message: 'Meal could not be deleted', meal  }
+      return { error: false, code: 200, message: 'Meal could not be deleted', meal  }
     } catch ( err ) {
       return { error: true, code: 500 , message: 'Something went wrong. Please try again.'}
     }

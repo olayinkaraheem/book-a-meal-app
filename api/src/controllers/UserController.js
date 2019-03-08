@@ -19,30 +19,29 @@ export default class UserController {
     }
   }
 
-  getMeal() {
+  getUser() {
     return async (req, res) => {
-      const meals = new MealsService();
-      const meal = await meals.getMeal(req.params.id);
+      const users = new MealsService();
+      const user = await users.getMeal(req.params.id);
       const message = meal.message;
       const status = meal.code;
-      if (!meal.error) {
-        res.status(status).send({ message, data: meal.meal });
+      if (!user.error) {
+        res.status(status).send({ message, data: user.user });
       } else {
         res.status(status).send({ message });
       }
     }
   }
 
-  addMeal() {
+  signupUser() {
     return async (req, res) => {
-      const meal = new MealsService();
-
-      const newMeal = req.body;
-      const meal_response = await meal.addMeal(newMeal);
-      const message = meal_response.message;
-      const status = meal_response.code;
-      if (!meal_response.error) {
-        res.status(status).send({ message, data: meal_response.meal });
+      const user = new UsersService();
+      const newUser = req.body;
+      const user_response = await user.addUser(newUser);
+      const message = user_response.message;
+      const status = user_response.code;
+      if (!user_response.error) {
+        res.status(status).send({ message, data: user_response.user });
       } else {
         res.status(status).send({ message });
       }

@@ -4,11 +4,11 @@ import UserController from '../controllers/UserController';
 const userController = new UserController();
 
 const router = express.Router();
-router.get('/', userController.getAll());
-// router.post('/', mealsController.addMeal());
-// router.put('/:id', mealsController.updateMeal());
-// router.delete('/:id', mealsController.deleteMeal());
-// router.get('/:id', mealsController.getMeal());
+router.get('/users', userController.getAll());
+router.post('/signup', userController.signupUser());
+// router.put('/:id', userController.updateMeal());
+// router.delete('/:id', userController.deleteMeal());
+router.get('/users/:id', userController.getUser());
 
 // router.get('/:id', MealsController.getMeal);
 
