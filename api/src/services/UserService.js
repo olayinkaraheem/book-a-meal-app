@@ -41,28 +41,29 @@ export default class UserService {
         // ...meal
         // }, returning: id)
         // .then;
-      if(role == 2)
+      if(role == 2){
         const { firstname, lastname, username, password, email, role, ...others } = user;
-        newUser = await db.sequelize.transaction( async (t) => { 
-          return await User.create({ 
-            firstname, 
-            lastname, 
-            username, 
-            password, 
-            email, 
-            role 
-          }, { transaction: t })
-          .then( async (user) => {
-            return await Contact.create({ email, user_id: user.id });
-            // await Caterer.create({ user_id: user.id, ...others });
-          })
-          .then( async (user) => {
-            return await Caterer.create({ user_id: user.id, ...others });
-          })
-          .catch( (err) => {
-            throw new Error(err);
-          })
-      })
+          newUser = await db.sequelize.transaction( async (t) => { 
+            return await User.create({ 
+              firstname, 
+              lastname, 
+              username, 
+              password, 
+              email, 
+              role 
+            }, { transaction: t })
+            .then( async (user) => {
+              return await Contact.create({ email, user_id: user.id });
+              // await Caterer.create({ user_id: user.id, ...others });
+            })
+            .then( async (user) => {
+              return await Caterer.create({ user_id: user.id, ...others });
+            })
+            .catch( (err) => {
+              throw new Error(err);
+            })
+        })
+      }
       if(newUser){
         return { error: false, code: 200, message: `New user with id ${newUser.id} added successfully`, meal: newMeal };
       }
