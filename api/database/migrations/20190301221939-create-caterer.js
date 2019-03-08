@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         unique: true
       },
@@ -17,18 +18,20 @@ module.exports = {
         unique: true
       },
       image_url: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       rating: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       created_at: {
-        // allowNull: false,
+        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        // defaultValue: Sequelize.NOW
       },
       updated_at: {
-        // allowNull: false,
+        allowNull: false,
         type: Sequelize.DATE
       }
     });

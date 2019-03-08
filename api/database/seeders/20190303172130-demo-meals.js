@@ -27,6 +27,8 @@ module.exports = {
         active: 1,
         // rating: 5,
         updated_by: 1,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: 'Fried Rice',
@@ -38,6 +40,8 @@ module.exports = {
         active: 1,
         // rating: 5,
         updated_by: 1,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: 'Coconut Rice',
@@ -49,6 +53,8 @@ module.exports = {
         active: 1,
         // rating: 5,
         updated_by: 1,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: 'Apache Rice',
@@ -60,6 +66,8 @@ module.exports = {
         active: 1,
         // rating: 5,
         updated_by: 1,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: 'Node Rice',
@@ -71,6 +79,8 @@ module.exports = {
         active: 1,
         // rating: 5,
         updated_by: 1,
+        created_at: new Date(),
+        updated_at: new Date()
       },
     ], {});
     

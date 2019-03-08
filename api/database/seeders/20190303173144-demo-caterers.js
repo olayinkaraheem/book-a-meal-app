@@ -15,13 +15,17 @@ module.exports = {
           user_id: 2,
           restaurant_name: 'Sibi',
           image_url: 'nHHBnJKihCffhgj.png',
-          rating: 5
+          rating: 5,
+          created_at: new Date(),      
+          updated_at: new Date()     
         },
         {
           user_id: 3,
           restaurant_name: 'Spoon',
           image_url: 'nHHB87HJj98bhfhgj.png',
-          rating: 5
+          rating: 5,
+          created_at: new Date(),
+          updated_at: new Date(),        
         }
       ], {});
   },

@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     // Timestamps
     // created_at: Sequelize.DATE,
     // updated_at: Sequelize.DATE,
-  }, {});
+  }, {
+    underscored: true
+  });
   User.associate = function(models) {
     // associations can be defined here
     // User.hasOne(models.Caterer);

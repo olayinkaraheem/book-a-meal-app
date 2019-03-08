@@ -142,7 +142,7 @@ export default class MenuService {
       
       // console.log(meals);
       if(meals) {
-        return { error: false, code: 200, message: `Today's menu is empty meals`, meals };
+        return { error: false, code: 200, message: `Today's menu is empty.`, meals };
       }
       return { error: false, code: 204, message: `No meal found for today's menu`, meals: {} };
     } catch ( err ) {

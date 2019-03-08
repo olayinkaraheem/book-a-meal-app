@@ -20,6 +20,8 @@ module.exports = {
       username: 'Admin',
       password: 'testpass',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g,'').repeat(5),
+      created_at: new Date(),
+      updated_at: new Date()
     },
     {
       firstname: 'Adekoya',
@@ -28,6 +30,8 @@ module.exports = {
       username: 'Caterer1',
       password: 'testpass',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      created_at: new Date(),
+      updated_at: new Date()
     },
     {
       firstname: 'Ben',
@@ -36,6 +40,8 @@ module.exports = {
       username: 'Caterer2',
       password: 'testpass',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      created_at: new Date(),
+      updated_at: new Date()
     },
     {
       firstname: 'Bade',
@@ -44,6 +50,8 @@ module.exports = {
       username: 'user1',
       password: 'testpass',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      created_at: new Date(),
+      updated_at: new Date()
     },
     {
       firstname: 'Faith',
@@ -52,6 +60,8 @@ module.exports = {
       username: 'user2',
       password: 'testpass',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      created_at: new Date(),
+      updated_at: new Date()
     }
 
   ], {});
