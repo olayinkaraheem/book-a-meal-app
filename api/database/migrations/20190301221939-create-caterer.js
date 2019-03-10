@@ -15,7 +15,6 @@ module.exports = {
       },
       restaurant_name: {
         type: Sequelize.STRING,
-        unique: true
       },
       image_url: {
         allowNull: false,

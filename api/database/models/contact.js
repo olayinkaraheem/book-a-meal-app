@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING
-  }, {});
+  }, {
+      underscored: true
+  });
   Contact.associate = function(models) {
     // associations can be defined here
     Contact.belongsTo(models.User);

@@ -1,10 +1,12 @@
 import UserService from '../services/UserService';
+import bcrypt from 'bcrypt'
 
 export default class UserController {
-  constructor() {
-    this.userService = new UserService;
-  }
+  // constructor() {
+  //   this.userService = new UserService;
+  // }
 
+  // Get all users on the system
   getAll() {
     return async (req, res) => {
       const user = new UserService();
@@ -18,11 +20,11 @@ export default class UserController {
       }
     }
   }
-
+  // Get a single user
   getUser() {
     return async (req, res) => {
-      const users = new MealsService();
-      const user = await users.getMeal(req.params.id);
+      const users = new UserService();
+      const user = await users.getUser(req.params.id);
       const message = meal.message;
       const status = meal.code;
       if (!user.error) {
@@ -32,11 +34,41 @@ export default class UserController {
       }
     }
   }
+  // Log a user in
+  login() {
+    return async (req, res) => {
+      const users = new UserService();
+      const { username, password } = req.body;
+      const user = await users.getUserByUsername(username); // get user by username not id
+      const message = user.message;
+      const status = user.code;
 
+      if ( !user.error ) {
+        if(user.user.id) {
+          // const passwordCheck = bcrpyt.compare(password, user.user.password, (err, result)=> result );
+          const passwordCheck = bcrypt.compareSync(password, user.user.password);
+          // if ((user.user.username !== req.body.username) && passwordCheck == true ){
+          if ( passwordCheck == true ){
+            res.status(status).send({ message, data: user.user });
+          } else {
+            res.status(status).send({ message: 'Invalid password. Please try again.' })
+          }
+        } else {
+          res.status(status).send({ message });
+        }
+      } else {
+        res.status(status).send({ message });
+      }
+    }
+  }
+  // Signup a user
   signupUser() {
     return async (req, res) => {
-      const user = new UsersService();
-      const newUser = req.body;
+      const user = new UserService();
+      let { password } = req.body;
+      const encryptedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8)); // encrypt password here
+      req.body.password = encryptedPassword;
+      const newUser = Object.assign({}, { ...req.body });
       const user_response = await user.addUser(newUser);
       const message = user_response.message;
       const status = user_response.code;
@@ -48,34 +80,4 @@ export default class UserController {
     }
   }
 
-  updateMeal() {
-    //const caterer_id = caterer_id || 3;  this will be the id of the logged in caterer or admin 
-    const meal = new MealsService();
-    return async (req, res) => {
-      const updated_meal = await meal.updateMeal(parseInt(req.params.id, Number), req.body);
-      // let message = `Meal with id ${req.params.id} could not be updated`;
-      const message = updated_meal.message;
-      const status = updated_meal.code;
-      if (!updated_meal.error) {
-        res.status(status).send({ message, data: updated_meal.meal });
-      } else {
-        res.status(status).send({ message });
-      }
-    }
-  }
-
-  deleteMeal() {
-    const meal = new MealsService();
-    return async (req, res) => {
-      const deleted_meal = await meal.deleteMeal(parseInt(req.params.id, Number), req.body);
-      // let message = `Meal with id ${req.params.id} could not be updated`;
-      const message = deleted_meal.message;
-      const status = deleted_meal.code;
-      if (!deleted_meal.error) {
-        res.status(status).send({ message });
-      } else {
-        res.status(status).send({ message });
-      }
-    }
-  }
 }

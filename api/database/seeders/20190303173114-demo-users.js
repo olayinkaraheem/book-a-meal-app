@@ -18,7 +18,7 @@ module.exports = {
       lastname: 'Raheem',
       role: 1,
       username: 'Admin',
-      password: 'testpass',
+      password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g,'').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
@@ -28,7 +28,7 @@ module.exports = {
       lastname: 'Dammy',
       role: 2,
       username: 'Caterer1',
-      password: 'testpass',
+      password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
@@ -38,7 +38,7 @@ module.exports = {
       lastname: 'Jude',
       role: 2,
       username: 'Caterer2',
-      password: 'testpass',
+      password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
@@ -48,7 +48,7 @@ module.exports = {
       lastname: 'Smith',
       role: 3,
       username: 'user1',
-      password: 'testpass',
+      password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
@@ -58,7 +58,7 @@ module.exports = {
       lastname: 'Phillips',
       role: 3,
       username: 'user2',
-      password: 'testpass',
+      password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
       token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
@@ -76,5 +76,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
+    return queryInterface.bulkDelete('Users', null, {});
   }
 };

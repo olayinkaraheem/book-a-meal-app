@@ -1,102 +1,6 @@
 import { Menu } from '../../database/models';
 
 export default class MenuService {
-  fetchAllMeals() {
-    // This is the data we will have in our database
-    this.meals = [
-      {
-        id: 1,
-        name: 'Jollof Rice',
-        size: 'plates',
-        price: '500',
-        currency: 'NGN',
-        caterer_id: 3,
-        active_today: 0,
-        rating: 5,
-        status: 1,
-        // updated_at: "20-01-2019 12:34:25",
-        // updated_by: 1,
-        created_at: "20-01-2019 12:34:25",
-      },
-      {
-        id: 2,
-        name: 'Fried Rice',
-        size: 'plates',
-        price: '200',
-        currency: 'NGN',
-        caterer_id: 3,
-        active_today: 1,
-        rating: 5,
-        status: 1,
-        // updated_at: "20-01-2019 12:34:25",
-        // updated_by: 1,
-        created_at: "20-01-2019 12:34:25",
-      },
-      {
-        id: 3,
-        name: 'Coconut Rice',
-        size: 'plates',
-        price: '500',
-        currency: 'NGN',
-        caterer_id: 3,
-        active_today: 1,
-        rating: 5,
-        status: 1,
-        // updated_at: "20-01-2019 12:34:25",
-        // updated_by: 1,
-        created_at: "20-01-2019 12:34:25",
-      },
-      {
-        id: 4,
-        name: 'Apache Rice',
-        size: 'plates',
-        price: '750',
-        currency: 'NGN',
-        caterer_id: 3,
-        active_today: 0,
-        rating: 5,
-        status: 1,
-        // updated_at: "20-01-2019 12:34:25",
-        // updated_by: 1,
-        created_at: "20-01-2019 12:34:25",
-      },
-      {
-        id: 5,
-        name: 'Node Rice',
-        size: 'plates',
-        price: '750',
-        currency: 'NGN',
-        caterer_id: 3,
-        active_today: 1,
-        rating: 5,
-        status: 1,
-        // updated_at: "20-01-2019 12:34:25",
-        // updated_by: 1,
-        created_at: "20-01-2019 12:34:25",
-      },
-    ];
-
-    // When we retrieve the data, it will be of type Means
-    // Hence, this simulation here.
-    return this.meals.map((data) => {
-      const meal = new Meal();
-      meal.id = data.id;
-      meal.name = data.name;
-      meal.size = data.size;
-      meal.price = data.price;
-      meal.currency = data.currency;
-      meal.caterer_id = data.caterer_id;
-      meal.active_today = data.active_today;
-      meal.rating = data.rating;
-      meal.status = data.status;
-      // meal.updated_at = data.updated_at;
-      // meal.active = data.active;
-      // meal.updated_by = data.updated_by;
-      meal.created_at = data.created_at;
-      return meal;
-    });
-  }
-
   async getAll() {
     // This will be a call to our ORM
     // And some manipulations to make the data presentable.
@@ -178,14 +82,14 @@ export default class MenuService {
       return { error: true, code: 500, message: "Something is not right" };
     }
   }
-  async removeMealFromMenu(meal_id) {
+  async removeMealFromMenu(id) {
     // this should return the meal just added if saved successfully or an error as string then i'll check if response type is an object
     // or a string the controller;
     // console.log(meal_id);
     try {
-      const deleted_meal = await Menu.update({ deleted: 1}, { where: { meal_id }, returning: true });
-      if (deleted_meal[1].length) {
-        return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${meal_id} removed from menu successfully` }
+      const deleted_menu = await Menu.update({ deleted: 1}, { where: { id }, returning: true });
+      if (deleted_menu[1].length) {
+        return { error: false, meal: deleted_menu, code: 200, message: `Meal with menu id ${id} removed from menu successfully` }
       }
       return { error: false, code: 200, message: 'Meal could not be deleted from menu', meal }
     } catch (err) {
@@ -194,11 +98,11 @@ export default class MenuService {
   }
 
 
-  getAllByCaterer(caterer_id) {
-    // This will be a call to our ORM
-    // And some manipulations to make the data presentable.
-    return this.fetchAllMeals().filter(meal => meal.caterer_id == caterer_id);
-  }
+  // getAllByCaterer(caterer_id) {
+  //   // This will be a call to our ORM
+  //   // And some manipulations to make the data presentable.
+  //   return this.fetchAllMeals().filter(meal => meal.caterer_id == caterer_id);
+  // }
 
   // removeMealFromMenu(caterer_id, meal_id) {
   //   const meals = this.getAllByCaterer(caterer_id);

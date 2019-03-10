@@ -9,6 +9,6 @@ router.get('/all', menuController.getAll());
 router.get('/', menuController.getMenuOfTheDay());
 router.post('/', menuController.setMenuOfTheDay());
 
-router.delete('/:meal_id', menuController.removeMealFromMenu());
+router.delete('/:id', menuController.removeMealFromMenu());
 
 export default router;

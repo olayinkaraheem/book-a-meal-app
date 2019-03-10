@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'caterer_id',
       as: 'caterer'
     });
+    Meal.hasMany(models.Order, {
+      foreignKey: 'id',
+      as: 'orders'
+    });
     
     // Meal.hasMany(models.Menu, {
     //   foreignKey: 'id',

@@ -71,11 +71,11 @@ export default class MenuController {
   removeMealFromMenu() {
     return async (req, res) => {
       const menu = new MenuService();
-      const meal_id =  parseInt(req.params.meal_id, Number);
-      const deleted_meal = await menu.removeMealFromMenu(meal_id);
-      const message = deleted_meal.message;
-      const status = deleted_meal.code;
-      if (!deleted_meal.error) {
+      const menu_id =  parseInt(req.params.id, Number);
+      const deleted_menu = await menu.removeMealFromMenu(menu_id);
+      const message = deleted_menu.message;
+      const status = deleted_menu.code;
+      if (!deleted_menu.error) {
         res.status(status).send({ message });
       } else {
         res.status(status).send({ message });

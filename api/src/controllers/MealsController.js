@@ -73,7 +73,7 @@ export default class MealsController {
       const message = deleted_meal.message;
       const status = deleted_meal.code;
       if (!deleted_meal.error) {
-        res.status(status).send({ message });
+        res.status(status).send({ message, data: deleted_meal.meal });
       } else {
         res.status(status).send({ message });
       }
