@@ -16,7 +16,8 @@ module.exports = {
         unique: true
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       address: {
         type: Sequelize.STRING
@@ -32,8 +33,7 @@ module.exports = {
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        type: Sequelize.DATE
       },
       updated_at: {
         allowNull: false,

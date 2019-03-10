@@ -6,14 +6,42 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.STRING,
     image: DataTypes.STRING,
     currency: DataTypes.STRING,
-    caterer_id: DataTypes.INTEGER,
+    caterer_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Caterer',
+        key: 'id',
+        as: 'caterer_id'
+      }
+    },
     // activeToday: DataTypes.INTEGER,
-    active: DataTypes.INTEGER,
-    updated_by: DataTypes.INTEGER
-  }, {});
+    active: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
+
+    updated_by: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0 
+    }
+  }, {
+    underscored: true
+  });
   Meal.associate = function(models) {
     // associations can be defined here
-    Meal.belongsTo(Caterer);
+    Meal.belongsTo(models.Caterer, {
+      foreignKey: 'caterer_id',
+      as: 'caterer'
+    });
+    Meal.hasMany(models.Order, {
+      foreignKey: 'id',
+      as: 'orders'
+    });
+    
+    // Meal.hasMany(models.Menu, {
+    //   foreignKey: 'id',
+    //   as: 'menu'
+    // });
   };
   return Meal;
 };

@@ -12,13 +12,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       deleted: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        defaultValue: 0
+        // defaultValue: 0
       },
       created_at: {
         allowNull: false,
         type: Sequelize.DATEONLY,
-        defaultValue: Sequelize.NOW
+        // defaultValue: Sequelize.NOW
       },
       updated_at: {
         allowNull: false,

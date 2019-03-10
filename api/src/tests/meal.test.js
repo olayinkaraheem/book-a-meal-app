@@ -23,16 +23,14 @@ describe('Meals', () => {
   describe('/POST Meal', () => {
     it('It should add a new meal option', done => {
       const new_meal = {
-        id: 100,
         name: 'Dodo and Egg',
-        size: 'plate',
+        size: 'plates',
         price: 1000,
         currency: 'NGN',
-        caterer_id: 21,
-        active_today: 1,
+        caterer_id: 1,
         active: 1,
-        rating: 0,
-        updated_at: 0,
+        image: 'testtest.png',
+        updated_at: new Date(),
         updated_by: 0,
         created_at: new Date(),
       };
@@ -40,7 +38,11 @@ describe('Meals', () => {
         .post('/api/v1/meals/')
         .send(new_meal)
         .end((err, res) => {
-          expect(new_meal).to.have.property('id');
+          expect(new_meal).to.have.property('name');
+          expect(new_meal).to.have.property('size');
+          expect(new_meal).to.have.property('price');
+          expect(new_meal).to.have.property('caterer_id');
+          expect(new_meal).to.have.property('image');
           // console.log(res.body);
           res.should.have.status(200);
           expect(res.body).to.be.an('object');
@@ -52,24 +54,17 @@ describe('Meals', () => {
   describe('/PUT Meal', () => {
     it('It should update a meal option', done => {
       const meal_update = {
-        "name": "Ofada Rice 1",
-        "size": "plate",
-        "price": "500",
-        "currency": "NGN",
-        "caterer_id": 3,
-        "active_today": 1,
-        "rating": 5,
         "active": 0
       }
       chai.request(app)
-        .put('/api/v1/meals/4')
+        .put('/api/v1/meals/1')
         .send(meal_update)
         .end((err, res) => {
-          expect(meal_update).to.have.property('caterer_id');
-          // console.log(res.body);
+          expect(meal_update).to.have.property('active');
+          console.log(res.body);
           res.should.have.status(200);
           expect(res.body).to.be.an('object');
-          expect(res.body.data).to.have.property('id');
+          expect(res.body.data[1][0]).to.have.property('id');
           done();
         });
     });
@@ -78,17 +73,18 @@ describe('Meals', () => {
   describe('/DELETE Meal', () => {
     it('It should delete a meal from a list of available options', done => {
       const meal_item = {
-        caterer_id: 3
+        active: -1
       };
       chai.request(app)
-        .delete('/api/v1/meals/4')
+        .delete('/api/v1/meals/1')
         .send(meal_item)
         .end((err, res) => {
-          expect(meal_item).to.have.property('caterer_id');
+          expect(meal_item).to.have.property('active');
           // console.log(res.body);
           res.should.have.status(200);
           expect(res.body).to.be.an('object');
-          expect(res.body.data).to.have.property('id');
+          res.body.data[0].should.equal(1);
+          expect(res.body.data[1][0]).to.have.property('id');
           done();
         });
     });
