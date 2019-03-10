@@ -5,6 +5,9 @@ import MenuRoutes from './routes/MenuRoutes';
 import OrdersRoutes from './routes/OrdersRoutes';
 import UserRoutes from './routes/UserRoutes';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../swagger.json';
+
 
 
 export const app = express();
@@ -18,13 +21,14 @@ require('dotenv').config();
 
 // const result = dotenv.config();
 // if(result.error) {
-//   throw result.error
-// }
+  //   throw result.error
+  // }
 app.use(bodyParser.json());
 app.use('/api/v1/meals', MealsRoutes);
 app.use('/api/v1/menu', MenuRoutes);
 app.use('/api/v1/orders', OrdersRoutes);
 // app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1/auth', UserRoutes);
 const PORT = 8080;
 const server = app.listen(process.env.PORT || PORT, ()=>{
