@@ -54,10 +54,7 @@ export default class UserService {
       if(role == 3) {
         newUser = await User.create({ token, ...user });
       }
-      // const newUser = await Meal.create({
-        // ...meal
-        // }, returning: id)
-        // .then;
+      
       if(role == 2){
         const { firstname, lastname, username, password, email, ...others } = user;
         console.log(user);
