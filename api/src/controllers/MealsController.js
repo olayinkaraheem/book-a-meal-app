@@ -6,89 +6,77 @@ export default class MealsController {
   }
   
   getAll() {
-    const meal = new MealsService();
-    return (req, res) => {
-      const all_meals = meal.getAll();
-      let message = 'No meal option available';
-      let status = 201;
-      if(all_meals.length){
-        message = 'Meals fetched successfully';
-        status = 200;
+    return async (req, res) => {
+      const meal = new MealsService();
+      const all_meals = await meal.getAll();
+      const message = all_meals.message;
+      const status = all_meals.code;
+      if(!all_meals.error){
+        res.status(status).send({ message, data: all_meals.meals });
+      } else {
+        res.status(status).send({ message });
       }
-      res.status(status).send({ message, data: all_meals });
     }
   }
 
   getMeal() {
-    const meals = new MealsService();
-    return (req, res) => {
-      const meal = meals.getMeal(req.params.id);
-      let message = `Cannot get meal with id ${req.params.id}`;
-      let response_status = 403;
-      if(meal.id) {
-        message = 'Meal fetch request processed successfully';
-        response_status = 200;
-      }      
-      res.status(response_status).send({ message, data: meal });
+    return async (req, res) => {
+      const meals = new MealsService();
+      const meal = await meals.getMeal(req.params.id);
+      const message = meal.message;
+      const status = meal.code;
+      if (!meal.error) {
+        res.status(status).send({ message, data: meal.meal });
+      } else {
+        res.status(status).send({ message });
+      }
     }
   }
 
   addMeal() {
-    return (req, res) => {
+    return async (req, res) => {
       const meal = new MealsService();
-      // const { name, size, price, currency, caterer_id, active_today, active } = req.body;
-      // const newMeal = {
-      //   id: lastMealInDatabase.id + 1,
-      //   name ,
-      //   size ,
-      //   price ,
-      //   currency ,
-      //   caterer_id ,
-      //   active_today ,
-      //   active ,
-      //   rating: 0,
-      //   updated_at: 0,
-      //   updated_by: 0,
-      //   created_at: new Date(),
-      // };
+    
       const newMeal = req.body;
-      const meal_response = meal.addMeal(newMeal);
-      let message = `New meal failed to add to list of available meal options`;
-      let response_status = 400;
-      if(meal_response.id){
-        message = `New meal with id ${meal_response.id} added successfully`;
-        response_status = 200;
+      const meal_response = await meal.addMeal(newMeal);
+      const message = meal_response.message;
+      const status = meal_response.code;
+      if (!meal_response.error) {
+        res.status(status).send({ message, data: meal_response.meal });
+      } else {
+        res.status(status).send({ message });
       }
-      res.status(response_status).send({ message, data: meal_response });
     }
   }
 
   updateMeal() {
     //const caterer_id = caterer_id || 3;  this will be the id of the logged in caterer or admin 
     const meal = new MealsService();
-    return (req, res) => {
-      const updated_meal = meal.updateMeal(parseInt(req.params.id, Number), req.body);
-      let message = `Meal with id ${req.params.id} could not be updated`;
-      let response_status = 403; 
-      if(updated_meal.id){
-        message = `Meal with id ${req.params.id} updated successfully`;
-        response_status = 200;
+    return async (req, res) => {
+      const updated_meal = await meal.updateMeal(parseInt(req.params.id, Number), req.body);
+      // let message = `Meal with id ${req.params.id} could not be updated`;
+      const message = updated_meal.message;
+      const status = updated_meal.code;
+      if (!updated_meal.error) {
+        res.status(status).send({ message, data: updated_meal.meal });
+      } else {
+        res.status(status).send({ message });
       }
-      res.status(response_status).send({ message, data: updated_meal });
     }
   }
 
   deleteMeal() {
-    const meal = new MealsService();
-    return (req, res) => {
-      const deleted_meal = meal.deleteMeal(req.body.caterer_id, req.params.id);
-      let message = `Meal with id ${req.params.id} could not be deleted`;
-      let response_status = 403;
-      if(deleted_meal.id){
-        message = `Meal with id ${req.params.id} deleted successfully`;
-        response_status = 200;
+    const meal = new MealsService();    
+    return async (req, res) => {
+      const deleted_meal = await meal.deleteMeal(parseInt(req.params.id, Number), req.body);
+      // let message = `Meal with id ${req.params.id} could not be updated`;
+      const message = deleted_meal.message;
+      const status = deleted_meal.code;
+      if (!deleted_meal.error) {
+        res.status(status).send({ message, data: deleted_meal.meal });
+      } else {
+        res.status(status).send({ message });
       }
-      res.status(response_status).send({ message, data: deleted_meal });
     }
   }
 }

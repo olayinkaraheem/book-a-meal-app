@@ -1,0 +1,19 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "police",
+    "database": "book-a-meal",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "",
+    "database": "book-a-meal",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}
