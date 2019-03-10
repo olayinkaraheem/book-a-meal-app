@@ -1,6 +1,6 @@
-import { User, Contact, Caterer, sequelize } from '../../database/models';
+import { User, Contact, Caterer } from '../../database/models';
 import 'sequelize';
-import { isNullOrUndefined } from 'util';
+// import { isNullOrUndefined } from 'util';
 export default class UserService {
 
   async getAll() {
