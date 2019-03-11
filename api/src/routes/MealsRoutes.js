@@ -1,18 +1,17 @@
 import express from 'express';
+import auth from '../middlewares/auth';
+import MealAuth from '../middlewares/meals.auth';
 import MealsController from '../controllers/MealsController';
-import MenuController from '../controllers/MenuController';
-import MealsService from '../services/MealsService';
 
 // const mealsService = new MealsService();
 const mealsController = new MealsController();
-const menuController = new MenuController();
 
 const router = express.Router();
-router.get('/', mealsController.getAll());
-router.post('/', mealsController.addMeal());
-router.put('/:id', mealsController.updateMeal());
-router.delete('/:id', mealsController.deleteMeal());
-router.get('/:id', mealsController.getMeal());
+router.get('/', auth.verifyToken, MealAuth.getMeal, mealsController.getAll());
+router.post('/', auth.verifyToken, MealAuth.addMeal, mealsController.addMeal());
+router.put('/:id', auth.verifyToken, MealAuth.updateMeal, mealsController.updateMeal());
+router.delete('/:id', auth.verifyToken, MealAuth.deleteMeal, mealsController.deleteMeal());
+router.get('/:id', auth.verifyToken, MealAuth.getMeal, mealsController.getMeal());
 
 // router.get('/:id', MealsController.getMeal);
 

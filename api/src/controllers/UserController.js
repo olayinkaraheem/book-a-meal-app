@@ -1,10 +1,20 @@
 import UserService from '../services/UserService';
+import config from '../config/jwt-config';
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
 
 export default class UserController {
   // constructor() {
   //   this.userService = new UserService;
   // }
+ 
+  generateToken(user, privateKey) {
+    const token = jwt.sign({
+      user,
+    },
+    privateKey, { expiresIn: '24h' });
+    return token;
+  }
 
   // Get all users on the system
   getAll() {
@@ -49,7 +59,14 @@ export default class UserController {
           const passwordCheck = bcrypt.compareSync(password, user.user.password);
           // if ((user.user.username !== req.body.username) && passwordCheck == true ){
           if ( passwordCheck == true ){
-            res.status(status).send({ message, data: user.user });
+            const validUser = {
+              id: user.user.id,
+              username: user.user.name,
+              role: user.user.role,
+              authorizations: user.user.authorizations,
+            };
+            const token = this.generateToken(validUser, config.secret);
+            res.status(status).send({ message, data: { token, user:user.user } });
           } else {
             res.status(status).send({ message: 'Invalid password. Please try again.' })
           }

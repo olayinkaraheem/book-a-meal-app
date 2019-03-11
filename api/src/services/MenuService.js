@@ -58,7 +58,7 @@ export default class MenuService {
     // -1 because we have our data in an array which starts at 0
     // return this.fetchAllMeals()[id - 1] || {};
     try {
-      const meal = await Menu.find({ where: { id } });
+      const meal = await Menu.findOne({ where: { id } });
       if (meal) {
         return { error: false, code: 200, message: 'Request successfull', meal };
       }

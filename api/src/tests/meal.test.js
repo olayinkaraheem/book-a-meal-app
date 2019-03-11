@@ -22,6 +22,10 @@ describe('Meals', () => {
 
   describe('/POST Meal', () => {
     it('It should add a new meal option', done => {
+      const caterer = {
+        username: "Caterer1",
+        password: "testpass"
+      };
       const new_meal = {
         name: 'Dodo and Egg',
         size: 'plates',
@@ -35,6 +39,8 @@ describe('Meals', () => {
         created_at: new Date(),
       };
       chai.request(app)
+        .post('/api/v1/auth/login')
+        .send(caterer)
         .post('/api/v1/meals/')
         .send(new_meal)
         .end((err, res) => {

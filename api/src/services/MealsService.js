@@ -25,11 +25,11 @@ export default class MealsService {
     // -1 because we have our data in an array which starts at 0
     // return this.fetchAllMeals()[id - 1] || {};
     try{
-      const meal = await Meal.find({ where: { id } });
+      const meal = await Meal.findOne({ where: { id } });
       if(meal) {
         return { error: false, code: 200, message: 'Request successfull', meal };
       }
-      return { error: false, code: 200, message: `No meal found with id: ${id}`, meal: {} };
+      return { error: false, code: 404, message: `No meal found with id: ${id}`, meal: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: 'Something went wrong. Please try again' };
     }
@@ -45,11 +45,11 @@ export default class MealsService {
       // const meals = new MealsService();
       const newMeal = await Meal.create({
       ...meal
-      });
-      if(newMeal){
-        return { error: false, code: 200, message: `New meal with id ${newMeal.id} added successfully`, meal: newMeal };
-      }
-      return { error: false, code: 403, message: 'Meal could not be created. Please try again', meal: {} };
+    });
+    if(newMeal){
+      return { error: false, code: 200, message: `New meal with id ${newMeal.id} added successfully`, meal: newMeal };
+    }
+    return { error: false, code: 403, message: 'Meal could not be created. Please try again', meal: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: "Something is not right" };
     }
@@ -86,7 +86,7 @@ export default class MealsService {
   async deleteMeal(id, meal) {
     try {
       const deleted_meal = await Meal.update( meal, { where: { id }, returning: true });
-      console.log(deleted_meal);
+      // console.log(deleted_meal);
       if(deleted_meal[1].length){
         return { error: false, meal: deleted_meal, code: 200, message: `Meal with id ${id} deleted successfully` }
       }

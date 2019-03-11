@@ -6,7 +6,12 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.INTEGER,
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    token: DataTypes.STRING
+    // token: DataTypes.STRING,
+    authorizations: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue: [],
+      allowNull: true,
+    }
 
     // Timestamps
     // created_at: Sequelize.DATE,

@@ -1,4 +1,4 @@
-import { User, Contact, Caterer } from '../../database/models';
+import { User, Contact, Caterer, sequelize } from '../../database/models';
 import 'sequelize';
 // import { isNullOrUndefined } from 'util';
 export default class UserService {
@@ -10,7 +10,7 @@ export default class UserService {
         // console.log(meals);
         return { error: false, code: 200, message: 'Users fetched successfully', users };
       }
-      return { error: false, code: 204, message: "No meals found", users: {}};
+      return { error: false, code: 204, message: "No users found", users: {}};
     } catch ( err ) {
       // console.log(err);
       return { error: true, code: 500, message: 'Something went wrong. Please try again.' };
@@ -20,7 +20,7 @@ export default class UserService {
 
   async getUser(id) {
     try{
-      const user = await User.find({ where: { id } });
+      const user = await User.findOne({ where: { id } });
       if(user) {
         return { error: false, code: 200, message: 'Request successfull', user };
       }
@@ -33,7 +33,7 @@ export default class UserService {
 
   async getUserByUsername(username) {
     try{
-      const user = await User.find({ where: { username } });
+      const user = await User.findOne({ where: { username } });
       // console.log(user != null);
       if(user != null) {
         return { error: false, code: 200, message: 'Success', user };
@@ -47,12 +47,19 @@ export default class UserService {
   
   async addUser(user) {
     try {
-      const { role } = user;
-      const token = Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5);
-
+      const { role, username, email } = user;
+      // const token = Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5);
+      const existing_user = await User.findOne({ where: { username} });
+      const existing_email = await Contact.findOne({ where: { email } });
+      if(existing_user != null) {
+        return { error: false, code: 403, message: 'A User With This Username Already Exist', user: {} };
+      }
+      if(existing_email != null) {
+        return { error: false, code: 403, message: 'A User With This Email Already Exist', user: {} };
+      }
       let newUser;
       if(role == 3) {
-        newUser = await User.create({ token, ...user });
+        newUser = await User.create({ authorizations: [3, 10, 13, 14, 15], ...user });
       }
       
       if(role == 2){
@@ -66,7 +73,7 @@ export default class UserService {
             password, 
             email, 
             role,
-            token 
+            authorizations: [5, 6, 7, 8, 9, 10] 
           }, { transaction: t })
           .then( async (user) => {
             return await Contact.create({ email, user_id: user.id }, { transaction: t });
@@ -84,7 +91,6 @@ export default class UserService {
       if(newUser){
         return { error: false, code: 200, message: `New user added successfully`, user: newUser };
       }
-      return { error: false, code: 403, message: 'User could not be created. Please try again', user: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: "Something is not right"+err };
     }

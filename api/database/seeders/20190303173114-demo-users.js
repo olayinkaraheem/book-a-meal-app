@@ -18,8 +18,9 @@ module.exports = {
       lastname: 'Raheem',
       role: 1,
       username: 'Admin',
+      authorizations: [1],
       password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
-      token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g,'').repeat(5),
+      // token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g,'').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
     },
@@ -27,9 +28,10 @@ module.exports = {
       firstname: 'Adekoya',
       lastname: 'Dammy',
       role: 2,
+      authorizations: [5, 6, 7, 8, 9, 10],
       username: 'Caterer1',
       password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
-      token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      // token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
     },
@@ -37,9 +39,10 @@ module.exports = {
       firstname: 'Ben',
       lastname: 'Jude',
       role: 2,
+      authorizations: [5, 6, 7, 8, 9, 10],
       username: 'Caterer2',
       password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
-      token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      // token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
     },
@@ -48,8 +51,9 @@ module.exports = {
       lastname: 'Smith',
       role: 3,
       username: 'user1',
+      authorizations: [3, 10, 13, 14, 15],
       password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
-      token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      // token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
     },
@@ -58,8 +62,9 @@ module.exports = {
       lastname: 'Phillips',
       role: 3,
       username: 'user2',
+      authorizations: [3, 10, 13, 14, 15],
       password: '$2b$08$AffKvSeEsqHMFGHEMj.a3uZJnXfGIXEjIhIr72IMoRIfLQyHPns32',
-      token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
+      // token: Math.random().toString(36).replace(/[^a-zA-Z0-9]+/g, '').repeat(5),
       created_at: new Date(),
       updated_at: new Date()
     }

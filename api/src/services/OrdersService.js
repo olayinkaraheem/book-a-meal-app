@@ -42,7 +42,7 @@ export default class OrdersService {
 
   async getOrderById(id) {
     try {
-      const order = await Order.find({where: { id } });
+      const order = await Order.findOne({where: { id } });
       if(order){
         // console.log(order);
         return { error: false, code: 200, message: 'Order fetched successfully', order };
@@ -61,14 +61,14 @@ export default class OrdersService {
       // console.log(Order.getMeal());
       // return
       const { quantity, meal_id } = order;
-      const meal_detail = await Meal.find({ where: { id: meal_id }});
+      const meal_detail = await Meal.findOne({ where: { id: meal_id }});
       const amount = meal_detail.price*quantity;
       // console.log('amount: '+amount, 'quantity: '+meal_detail.price);
       const newOrder = await Order.create({ amount, ...order });
       if(newOrder){
         return { error: false, code: 200, message: `New order with id ${newOrder.id} added successfully`, order: newOrder };
       }
-      return { error: false, code: 200, message: 'New order could not be created. Please try again', order: {} };
+      return { error: false, code: 403, message: 'New order could not be created. Please try again', order: {} };
     } catch ( err ) {
       return { error: true, code: 500, message: "Something is not right "+err };
     }
@@ -77,7 +77,7 @@ export default class OrdersService {
   async updateOrder(id, order) {
     try {
       const { quantity, meal_id } = order;
-      const meal_detail = await Meal.find({ where: { id: meal_id } });
+      const meal_detail = await Meal.findOne({ where: { id: meal_id } });
       const amount = meal_detail.price * quantity;
       const updated_order = await Order.update( {amount, ...order}, { where: { id }, returning: true });
       if(updated_order){

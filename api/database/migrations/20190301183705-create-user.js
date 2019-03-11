@@ -29,9 +29,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      token: {
-        allowNull: false,
-        type: Sequelize.STRING
+      authorizations: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: true,
+        defaultValue: [],
       },
       created_at: {
         allowNull: false,
